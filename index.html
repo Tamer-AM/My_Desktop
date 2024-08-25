@@ -27,6 +27,7 @@
             </div>
             <div class="widget">
                 <h3>Widget 02</h3>
+                <iframe width="95%" height="300vh" src="https://www.youtube.com/embed/Rpk2vK4sw0o?si=QOo9MOTYEYNnTGNW" title="YouTube video player" frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="widget">
                 <h3>Widget 03</h3>
@@ -37,6 +38,15 @@
 </body>
 
 <script>
+    try {
+        var loadNotes = localStorage.getItem("notes");
+    }
+    catch(err) {
+        var loadNotes = "Enter your notes here and click 'Save'";
+    }
+
+    $("#note-area").val(loadNotes);
+
     var seperator = "/";
     var today = new Date();
     var dd = today.getDate();
@@ -46,6 +56,12 @@
     if (mm < 10){mm="0"+mm};
 
     $("#date").html(mm+seperator+dd+seperator+yyyy);
+
+    
+    $("#saveNoteBtn").click(function(){
+        var currentNotes = $("#note-area").val();
+        localStorage.setItem("notes", currentNotes);    
+    });
 
 </script>
 </html>
